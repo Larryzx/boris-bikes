@@ -12,7 +12,15 @@ describe DockingStation do
     expect{subject.dock(bike)}.to raise_error "Docking station full"
  end
   end
-  
+ describe 'release bike' do
+   subject { DockingStation.new }
+   let(:bike) { Bike.new }
+  it 'does not release a bike if broken' do
+    bike.report_broken
+    subject.dock(bike)
+    expect{subject.release_bike}.to raise_error "Bike broken"
+  end
+end
 
 #  describe "#release_bike" do
 #    it 'releases bikes' do
